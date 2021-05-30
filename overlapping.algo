@@ -1,0 +1,23 @@
+ALGORITHM overlapping
+VAR
+    htab: HASH_TABLE<INTEGER,INTEGER>
+    set1 : ARRAY_OF INTEGER [3,1,7,9]
+    set2 : ARRAY_OF INTEGER [2,4,1,9,3]
+    sum: INTEGER;
+    i , j : INTEGER;
+BEGIN
+    sum := 0;
+        FOR i FROM 0 TO set1.length-1  DO
+            htab.insert(set1[i],1)
+            FOR j FROM 0 TO set2.length-1  DO
+                IF (htab.lookup(set2[j])== true) THEN
+                    htab.insert(set2[j],2)
+                    sum := sum + set2[j]
+                ELSE
+                    htab.insert(set2[j],1)
+                END_IF
+            END_FOR
+        END_FOR
+    sum := sum + set1[i]*2
+    write('The elements in each set are unique or there are no duplicates within a set', sum)
+END

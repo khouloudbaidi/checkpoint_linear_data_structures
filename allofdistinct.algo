@@ -1,0 +1,23 @@
+ALGORITHM all_of_distinct
+VAR
+    htab: HASH_TABLE<INTEGER,INTEGER>
+    set1 : ARRAY_OF INTEGER [3,1,7,9]
+    set2 : ARRAY_OF INTEGER [2,4,1,9,3]
+    sum: INTEGER;
+    i , j : INTEGER;
+BEGIN
+    sum := 0;
+        FOR i FROM 0 TO set1.length-1  DO
+            htab.insert(set1[i],1)
+            sum:= sum + set1[i]
+            FOR j FROM 0 TO set2.length-1  DO
+                IF (htab.lookup(set2[j])== true) THEN
+                    htab.insert(set2[j],2)
+                    sum := sum - set2[j]
+                ELSE
+                    sum := sum + set2[j]
+                END_IF
+            END_FOR
+        END_FOR
+    write('the sum of all elements which are present in either of the given set', sum)
+END
